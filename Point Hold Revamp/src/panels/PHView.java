@@ -4,6 +4,7 @@ import java.awt.peer.MenuPeer;
 import java.util.Observable;
 import java.util.Observer;
 
+import Point_Hold_RE.Size;
 import controllers.PHController;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
@@ -45,7 +46,7 @@ public class PHView implements Observer{
 	 * @param stage
 	 */
 	private void initUI(Stage stage) {		
-		scene = new Scene(root,800,600);
+		scene = new Scene(root,Size.x,Size.y);
 		menuPanel = new MenuPanel(model, controller);
 		gamePanel = new GamePanel(model, controller,scene);
 		current = menuPanel;
@@ -74,6 +75,5 @@ public class PHView implements Observer{
 			System.out.println("Current Panel menu panel");
 		}
 		root.getChildren().add(current);
-		
 	}
 }

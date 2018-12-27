@@ -1,8 +1,11 @@
 package panels;
 
 import java.util.Observer;
+
+import Point_Hold_RE.Size;
 import controllers.GameTimer;
-import controllers.KeyController;
+import controllers.KeyPressed;
+import controllers.KeyReleased;
 import controllers.PHController;
 import java.util.Observable;
 import javafx.scene.layout.Pane;
@@ -29,32 +32,34 @@ public class GamePanel extends Pane implements Observer{
 		private GameModel game;
 		private PHController controller;
 		private Canvas canvas;
-		private KeyController key;
+		private KeyPressed keyP;
+		private KeyReleased keyR;
 		private Scene scene;
 
 		
 		public GamePanel(PHModel model, PHController controller, Scene scene) {
-			setStyle("-fx-background-color: white");
-			setPrefSize(800,600);
+			setStyle("-fx-background-color: grey");
+			setPrefSize(Size.x,Size.y);
 			this.model = model;
 			this.controller = controller;
 			this.scene = scene;
-			canvas = new Canvas(800,600);
+			canvas = new Canvas(Size.x,Size.y);
 			this.getChildren().add(canvas);
 			}
 		
 		public void gameInit() {
 			game = model.getGame();
 			game.addObserver(this);
-			key = new KeyController(game);
-			scene.setOnKeyPressed(key);
-			scene.setOnKeyReleased(key);
+			keyP = new KeyPressed(game);
+			keyR = new KeyReleased(game);
+			scene.setOnKeyPressed(keyP);
+			scene.setOnKeyReleased(keyR);
 			System.out.println("keyadded");
 		}
 		
 		public void repaint() {
 			GraphicsContext g =	this.canvas.getGraphicsContext2D();
-			g.clearRect(0, 0, 800, 600);
+			g.clearRect(0, 0, Size.x, Size.y);
 			game.draw(g);
 		}
 		

@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import models.PHModel;
@@ -31,6 +32,14 @@ public class HomeController extends MenuController {
 		if (task.compareTo("Start") == 0) {
 			System.out.println("start");
 			model.createGame();
+		}
+		if (task.compareTo("Instructions") == 0) {
+			System.out.println("Instructions");
+			model.ChangeState(2);
+		}
+		if (task.compareTo("Exit") == 0) {
+			System.out.println("Exit");
+			Platform.exit();
 		}
 	}
 

@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
  * @author coltm
  *
  */
-public class HomePanel extends Pane{
+public class InstructionPanel extends Pane{
 
 	private PHController controller;//controller
 	
@@ -20,12 +20,10 @@ public class HomePanel extends Pane{
 	 * Constructor for HomePanel
 	 * @param controller
 	 */
-	public HomePanel(PHController controller) {
+	public InstructionPanel(PHController controller) {
 		this.controller = controller;
 		ArrayList<String> buttonNames = new ArrayList<String>();
-		buttonNames.add("Start");
-		buttonNames.add("Instructions");
-		buttonNames.add("Exit");
+		buttonNames.add("Back");
 		ButtonSetup(buttonNames);
 	}
 	

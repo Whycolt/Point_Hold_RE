@@ -18,7 +18,7 @@ import javafx.event.EventHandler;
 public class PHController implements EventHandler<ActionEvent>{
 
 	private PHModel model;//Model
-	private MenuController homeController;//Controllers for menus
+	private MenuController homeController,InstructionController;//Controllers for menus
 	private GameController gameController;//Controller for the actual game
 	
 	/**
@@ -29,6 +29,7 @@ public class PHController implements EventHandler<ActionEvent>{
 	public PHController(PHModel model, Stage stage) {
 		this.model = model;
 		this.homeController = new HomeController(this.model);
+		this.InstructionController = new InstructionController(this.model);
 		this.gameController = new GameController(this.model);
 	}
 	
@@ -50,7 +51,7 @@ public class PHController implements EventHandler<ActionEvent>{
 				}
 				break;
 			case 2:
-				
+				InstructionController.handle(arg0);
 				break;
 		}
 	}

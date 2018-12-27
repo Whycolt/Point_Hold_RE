@@ -2,6 +2,7 @@ package panels;
 
 import java.util.Observer;
 
+import Point_Hold_RE.Size;
 import controllers.PHController;
 
 import java.awt.TextField;
@@ -22,6 +23,7 @@ public class MenuPanel extends Pane implements Observer{
 	private PHController controller;//controller
 	private Pane current;//active panel
 	private HomePanel home;//home panel
+	private InstructionPanel instruction;//instruction panel
 	
 	/**
 	 * Constructor for MenuPanel
@@ -30,7 +32,7 @@ public class MenuPanel extends Pane implements Observer{
 	 */
 	public MenuPanel(PHModel model, PHController controller) {
 		this.setStyle("-fx-background-color: blue");
-		this.setPrefSize(800,600);
+		this.setPrefSize(Size.x,Size.y);
 		this.model = model;
 		this.model.addObserver(this);
 		this.controller = controller;
@@ -44,6 +46,7 @@ public class MenuPanel extends Pane implements Observer{
 	 */
 	private void menuSetup() {
 		home = new HomePanel(controller);
+		instruction = new InstructionPanel(controller);
 	}
 	
 	/**
@@ -55,6 +58,10 @@ public class MenuPanel extends Pane implements Observer{
 		switch(model.getState()) {
 			case 0:
 				current = home;
+				break;
+			case 2:
+				current = instruction;
+				break;
 		}
 		this.getChildren().add(current);
 	}

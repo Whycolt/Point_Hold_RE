@@ -7,27 +7,27 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class KeyController implements EventHandler<KeyEvent>{
+public class KeyReleased implements EventHandler<KeyEvent>{
 
 	private GameModel game;
 	
-	public KeyController(GameModel g) {
+	public KeyReleased(GameModel g) {
 		this.game = g;
 	}
 	
 	@Override
 	public void handle(KeyEvent e) {
 		if (e.getCode() == KeyCode.D) {
-			game.getPlayer().changeX(5);
+			game.getPlayer().changeX(0);
 		}
 		if (e.getCode() == KeyCode.A) {
-			game.getPlayer().changeX(-5);
+			game.getPlayer().changeX(0);
 		}
 		if (e.getCode() == KeyCode.W) {
-			game.getPlayer().changeY(-5);
+			game.getPlayer().changeY(0);
 		}
 		if (e.getCode() == KeyCode.S) {
-			game.getPlayer().changeY(5);
+			game.getPlayer().changeY(0);
 		}
 	}
 

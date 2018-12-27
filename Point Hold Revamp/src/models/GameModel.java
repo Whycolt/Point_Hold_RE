@@ -30,6 +30,7 @@ public class GameModel extends Observable{
 		for (Entity i:e) {
 			i.action();
 		}
+		player.action();
 		this.setChanged();
 		this.notifyObservers();
 	}
