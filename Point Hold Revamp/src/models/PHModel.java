@@ -19,16 +19,15 @@ public class PHModel extends Observable{
 	 */
 	public PHModel(){
 		state = 0;
-		startGame();
 	}
 	
 	/**
 	 * change state of PHModel
 	 */
 	public void ChangeState(int state) {
-		this.setChanged();
-		this.notifyObservers();
 		this.state = state;
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -47,13 +46,15 @@ public class PHModel extends Observable{
 		return state == 1;
 	}
 	//Game state methods
+	
 	/**
 	 * Starts a new game in model
 	 */
-	public void startGame() {
+	public void createGame() {
 		game = new GameModel();
-		this.setChanged();
-		this.notifyObservers();
+		ChangeState(1);
+		setChanged();
+		notifyObservers(0);
 	 }
 	
 	 /**

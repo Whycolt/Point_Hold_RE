@@ -18,7 +18,8 @@ import javafx.event.EventHandler;
 public class PHController implements EventHandler<ActionEvent>{
 
 	private PHModel model;//Model
-	private MenuController home;//Controllers for menus
+	private MenuController homeController;//Controllers for menus
+	private GameController gameController;//Controller for the actual game
 	
 	/**
 	 * Constructor for PHController
@@ -27,9 +28,9 @@ public class PHController implements EventHandler<ActionEvent>{
 	 */
 	public PHController(PHModel model, Stage stage) {
 		this.model = model;
-		this.home = new HomeController(this.model);
+		this.homeController = new HomeController(this.model);
+		this.gameController = new GameController(this.model);
 	}
-
 	
 	@Override
 	/**
@@ -37,11 +38,19 @@ public class PHController implements EventHandler<ActionEvent>{
 	 */
 	public void handle(ActionEvent arg0) {
 		if (model.inGame()){
+			gameController.handle(arg0);
 			return;
 		}
+		System.out.println("Current State: " + model.getState());
 		switch(model.getState()) {
 			case 0:
-				home.handle(arg0);
+				homeController.handle(arg0);
+				if (model.getState() == 1) {
+					gameController.gameInit();
+				}
+				break;
+			case 2:
+				
 				break;
 		}
 	}

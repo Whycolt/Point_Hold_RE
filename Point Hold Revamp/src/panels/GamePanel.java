@@ -1,15 +1,21 @@
 package panels;
 
 import java.util.Observer;
-
+import controllers.GameTimer;
+import controllers.KeyController;
 import controllers.PHController;
-
-import java.awt.TextField;
 import java.util.Observable;
 import javafx.scene.layout.Pane;
+import models.Entity;
+import models.GameModel;
 import models.PHModel;
+import javafx.animation.*;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.*;
+import javafx.scene.input.KeyEvent; 
 import javafx.scene.*;
-import javafx.scene.control.Button;
 
 /**
  * Panel for presenting actual game of Point Hold
@@ -17,37 +23,44 @@ import javafx.scene.control.Button;
  *
  */
 
-//TODO
 public class GamePanel extends Pane implements Observer{
 
 		private PHModel model;
+		private GameModel game;
 		private PHController controller;
-		
-		public GamePanel(PHModel model, PHController controller) {
-			this.setStyle("-fx-background-color: blue");
-			this.setPrefSize(800,600);
-			this.model = model;
-			this.model.addObserver(this);
-			this.controller = controller;
-			Button button = new Button("STOP");
-			button.setOnAction(controller);
-			this.getChildren().add(button);
-			button.setPrefSize(100, 50);
-			button.setLayoutX(350);
-			button.setLayoutY(275);
-			//button.setStyle("-fx-text-fill: transparent");
-			
-		}
+		private Canvas canvas;
+		private KeyController key;
+		private Scene scene;
 
+		
+		public GamePanel(PHModel model, PHController controller, Scene scene) {
+			setStyle("-fx-background-color: white");
+			setPrefSize(800,600);
+			this.model = model;
+			this.controller = controller;
+			this.scene = scene;
+			canvas = new Canvas(800,600);
+			this.getChildren().add(canvas);
+			}
+		
+		public void gameInit() {
+			game = model.getGame();
+			game.addObserver(this);
+			key = new KeyController(game);
+			scene.setOnKeyPressed(key);
+			scene.setOnKeyReleased(key);
+			System.out.println("keyadded");
+		}
+		
 		public void repaint() {
-			
+			GraphicsContext g =	this.canvas.getGraphicsContext2D();
+			g.clearRect(0, 0, 800, 600);
+			game.draw(g);
 		}
 		
 		@Override
 		public void update(Observable arg0, Object arg1) {
 			this.repaint();
-			
 		}
-		
 	}
 

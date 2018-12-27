@@ -29,8 +29,8 @@ public class HomeController extends MenuController {
 	public void handle(ActionEvent arg0) {
 		String task = ((Button) arg0.getSource()).getText();
 		if (task.compareTo("Start") == 0) {
-			model.ChangeState(1);
 			System.out.println("start");
+			model.createGame();
 		}
 	}
 

@@ -24,6 +24,7 @@ public class PHView implements Observer{
 	private GamePanel gamePanel;//panel for game
 	private Pane root;//root of stage
 	private Pane current;//active panel
+	private Scene scene;
 	
 	/**
 	 * Constructor for PHView
@@ -43,12 +44,12 @@ public class PHView implements Observer{
 	 * Initiates the stage for the view
 	 * @param stage
 	 */
-	private void initUI(Stage stage) {
+	private void initUI(Stage stage) {		
+		scene = new Scene(root,800,600);
 		menuPanel = new MenuPanel(model, controller);
-		gamePanel = new GamePanel(model, controller);
+		gamePanel = new GamePanel(model, controller,scene);
 		current = menuPanel;
 		root.getChildren().add(current);
-		Scene scene = new Scene(root,800,600);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -58,15 +59,21 @@ public class PHView implements Observer{
 	 */
 	//Changes between game and menu panel
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object arg1) {
+		if (arg1 != null && (int)arg1 == 0) {
+			gamePanel.gameInit();
+			return;
+		}
 		root.getChildren().remove(current);
 		if (model.inGame()) {
 			current = gamePanel;
+			System.out.println("Current Panel game panel");
 		}
 		else {
 			current = menuPanel;
+			System.out.println("Current Panel menu panel");
 		}
 		root.getChildren().add(current);
-		System.out.println("updated");
+		
 	}
 }
