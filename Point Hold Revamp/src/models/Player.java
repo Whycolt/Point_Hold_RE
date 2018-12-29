@@ -17,6 +17,7 @@ public class Player extends Entity{
 		setPosition(new Pair(0,0));
 		setDelta(new Pair(0,0));
 		setShoot(new Pair(0,0));
+		hp = 100;
 		bulletcd = 20;
 		bulletcount = 0;
 		size = 60;

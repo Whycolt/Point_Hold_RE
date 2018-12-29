@@ -18,6 +18,7 @@ public class GameController implements EventHandler<ActionEvent>{
 	private PHModel model;
 	private GameModel game;
 	private boolean timer;
+	private EnemyFactory f;
 	
 	public GameController(PHModel model) {
 		this.timer = false;
@@ -29,6 +30,7 @@ public class GameController implements EventHandler<ActionEvent>{
 		game = model.getGame();
 		tick.start();
 		timer = true;
+		f = new EnemyFactory(game);
 	}
 	
 	public boolean isOn() {
@@ -52,6 +54,7 @@ public class GameController implements EventHandler<ActionEvent>{
 	public void execute() {
 		if (game != null)
 			game.execute();
+		f.createEnemy();
 	}
 	
 }

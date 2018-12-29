@@ -12,7 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 public abstract class Entity {
 	
 	protected Pair position, delta, shoot;
-	protected int speed, size, bulletcd, bulletcount;
+	protected int speed, size, bulletcd, bulletcount, hp;
 	protected boolean fire;
 	
 	public abstract void draw(GraphicsContext g);

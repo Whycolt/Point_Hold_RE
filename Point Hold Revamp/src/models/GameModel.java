@@ -14,6 +14,7 @@ public class GameModel extends Observable{
 	
 	private ArrayList<Entity> e;//List of entities in game
 	private ArrayList<Entity> removed;//list of removed elements
+	private ArrayList<Entity> added;
 	private Player player;
 	
 	/**
@@ -22,11 +23,12 @@ public class GameModel extends Observable{
 	public GameModel() {
 		e = new ArrayList<Entity>();
 		removed = new ArrayList<Entity>();
+		added = new ArrayList<Entity>();
 		player = new Player();
 	}
 	
 	public void add(Entity e) {
-		this.e.add(e);
+		added.add(e);
 	}
 	
 	/**
@@ -39,7 +41,11 @@ public class GameModel extends Observable{
 		for (Entity i:removed) {
 			e.remove(i);
 		}
+		for (Entity i:added) {
+			e.add(i);
+		}
 		removed.clear();
+		added.clear();
 		player.action(this);
 		this.setChanged();
 		this.notifyObservers();

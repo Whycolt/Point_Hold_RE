@@ -7,16 +7,16 @@ import controllers.ActionCommands;
 import controllers.DrawCommands;
 import javafx.scene.canvas.GraphicsContext;
 
-public class Bullet extends Entity{
+public class BulletF extends Entity{
 
-	public Bullet(Pair shoot, Pair x) {
+	public BulletF(Pair shoot, Pair x) {
 		setPosition(x);
 		setDelta(shoot);
 		setShoot(new Pair(0,0));
 		bulletcd = 0;
 		bulletcount = 0;
 		size = 15;
-		speed = 25;
+		speed = 10;
 	}
 	
 	@Override
