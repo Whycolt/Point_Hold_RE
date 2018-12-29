@@ -171,6 +171,19 @@ public class ActionCommands {
 	}
 
 	public static void action(Standard s, GameModel g) {
+		if (s.getPosition().getX() < g.getPlayer().getPosition().getX()) {
+			s.getShoot().setX(Math.abs(s.getShoot().getX()));
+		}
+		if (s.getPosition().getX() > g.getPlayer().getPosition().getX()) {
+			s.getShoot().setX(-Math.abs(s.getShoot().getX()));
+		}
+		if (s.getPosition().getY() < g.getPlayer().getPosition().getY()) {
+			s.getShoot().setY(Math.abs(s.getShoot().getY()));
+		}
+		if (s.getPosition().getY() > g.getPlayer().getPosition().getY()) {
+			s.getShoot().setY(-Math.abs(s.getShoot().getY()));
+		}
+
 		shootE(s,g);
 		move(s);
 		borders(s);

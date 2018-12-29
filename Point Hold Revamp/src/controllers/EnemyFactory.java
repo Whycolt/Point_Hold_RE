@@ -16,7 +16,7 @@ public class EnemyFactory {
 	}
 
 	public void createEnemy() {
-		if (count > 180) {
+		if (count > 360) {
 			count = 0;
 			int direction = (int)(Math.random()*2);
 			int start = (int)(Math.random()*2);
@@ -37,7 +37,7 @@ public class EnemyFactory {
 			System.out.println("new thing");
 			g.add(new Standard(str,dir));
 		}
-		count += 0;
+		count += 1;
 	}
 	
 }
