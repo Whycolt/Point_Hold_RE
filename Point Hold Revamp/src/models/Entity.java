@@ -1,5 +1,6 @@
 package models;
 
+import Point_Hold_RE.Pair;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -10,49 +11,70 @@ import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Entity {
 	
-	protected int x,y,deltaX, deltaY, speed;
+	protected Pair position, delta, shoot;
+	protected int speed, size, bulletcd, bulletcount;
+	protected boolean fire;
 	
 	public abstract void draw(GraphicsContext g);
-	public abstract void action();
+	public abstract void action(GameModel g);
+	
+	public int getBulletcd() {
+		return bulletcd;
+	}
+	
+	public void setBulletcd(int n) {
+		bulletcd = n;
+	}
+	
+	public int getBulletCount() {
+		return bulletcount;
+	}
+	
+	public void setBulletCount(int n) {
+		bulletcount = n;
+	}
+	
+	public void setFire(boolean fire) {
+		this.fire = fire;
+	}
+	
+	public boolean getFire() {
+		return fire;
+	}
+	
+	public Pair getShoot() {
+		return shoot;
+	}
+
+	public void setShoot(Pair shoot) {
+		this.shoot = shoot;
+	}
+	
+	public int getSize() {
+		return size;
+	}
 	
 	public int getSpeed() {
 		return speed;
 	}
 	
-	public int getX() {
-		return x;
+	public void setSpeed(int speed) {
+		this.speed = speed; 
 	}
 	
-	public int getY() {
-		return y;
+	public Pair getPosition() {
+		return position;
 	}
 	
-	public int getDeltaX() {
-		return deltaX;
+	public Pair getDelta() {
+		return delta;
 	}
 	
-	public int getDeltaY() {
-		return deltaY;
+	public void setDelta(Pair delta) {
+		this.delta = delta;
 	}
-	
-	public void changeX(int x) {
-		this.deltaX = x;
-	}
-	
-	public void changeY(int y) {
-		this.deltaY = y;
-	}
-	
-	public void addX(int x) {
-		this.x += x;
-	}
-	public void addY(int y) {
-		this.y += y;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public void setY(int y) {
-		this.y = y;
+
+	public void setPosition(Pair position) {
+		this.position = position;
 	}
 }

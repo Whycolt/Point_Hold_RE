@@ -18,16 +18,28 @@ public class KeyReleased implements EventHandler<KeyEvent>{
 	@Override
 	public void handle(KeyEvent e) {
 		if (e.getCode() == KeyCode.D) {
-			game.getPlayer().changeX(0);
+			game.getPlayer().removeMove("D");
 		}
 		if (e.getCode() == KeyCode.A) {
-			game.getPlayer().changeX(0);
+			game.getPlayer().removeMove("A");
 		}
 		if (e.getCode() == KeyCode.W) {
-			game.getPlayer().changeY(0);
+			game.getPlayer().removeMove("W");
 		}
 		if (e.getCode() == KeyCode.S) {
-			game.getPlayer().changeY(0);
+			game.getPlayer().removeMove("S");			
+		}
+		if (e.getCode() == KeyCode.RIGHT) {
+			game.getPlayer().removeMove("Right");
+		}
+		if (e.getCode() == KeyCode.LEFT) {
+			game.getPlayer().removeMove("Left");
+		}
+		if (e.getCode() == KeyCode.UP) {
+			game.getPlayer().removeMove("Up");
+		}
+		if (e.getCode() == KeyCode.DOWN) {
+			game.getPlayer().removeMove("Down");
 		}
 	}
 

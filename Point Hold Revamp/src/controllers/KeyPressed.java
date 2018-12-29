@@ -18,26 +18,28 @@ public class KeyPressed implements EventHandler<KeyEvent>{
 	@Override
 	public void handle(KeyEvent e) {
 		if (e.getCode() == KeyCode.D) {
-			game.getPlayer().changeX(game.getPlayer().getSpeed());
-			System.out.println("happened");
+			game.getPlayer().addMove("D");
 		}
 		if (e.getCode() == KeyCode.A) {
-			game.getPlayer().changeX(-game.getPlayer().getSpeed());
-			System.out.println("happened");
-
+			game.getPlayer().addMove("A");
 		}
 		if (e.getCode() == KeyCode.W) {
-			game.getPlayer().changeY(-game.getPlayer().getSpeed());
-			System.out.println("happened");
-
+			game.getPlayer().addMove("W");
 		}
 		if (e.getCode() == KeyCode.S) {
-			game.getPlayer().changeY(game.getPlayer().getSpeed());
-			System.out.println("happened");
-
+			game.getPlayer().addMove("S");
+		}
+		if (e.getCode() == KeyCode.RIGHT) {
+			game.getPlayer().addMove("Right");
+		}
+		if (e.getCode() == KeyCode.LEFT) {
+			game.getPlayer().addMove("Left");
+		}
+		if (e.getCode() == KeyCode.UP) {
+			game.getPlayer().addMove("Up");
+		}
+		if (e.getCode() == KeyCode.DOWN) {
+			game.getPlayer().addMove("Down");
 		}
 	}
-
-
-	
 }

@@ -13,6 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class GameModel extends Observable{
 	
 	private ArrayList<Entity> e;//List of entities in game
+	private ArrayList<Entity> removed;//list of removed elements
 	private Player player;
 	
 	/**
@@ -20,7 +21,12 @@ public class GameModel extends Observable{
 	 */
 	public GameModel() {
 		e = new ArrayList<Entity>();
+		removed = new ArrayList<Entity>();
 		player = new Player();
+	}
+	
+	public void add(Entity e) {
+		this.e.add(e);
 	}
 	
 	/**
@@ -28,11 +34,19 @@ public class GameModel extends Observable{
 	 */
 	public void execute() {
 		for (Entity i:e) {
-			i.action();
+			i.action(this);
 		}
-		player.action();
+		for (Entity i:removed) {
+			e.remove(i);
+		}
+		removed.clear();
+		player.action(this);
 		this.setChanged();
 		this.notifyObservers();
+	}
+	
+	public void remove(Entity e) {
+		removed.add(e);
 	}
 	
 	/**

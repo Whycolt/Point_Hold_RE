@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="outfile.jnlp">
+  <information>
+    <title>AppName</title>
+    <vendor>Unknown</vendor>
+    <description>AppName</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href=".\PointHoldRE.jar" size="18570" download="null" />
+    <jar href=".\sPointHoldRE.jar" size="22181" download="null" />
+  </resources>
+  <jfx:javafx-desc  width="400" height="400" main-class="application.Main"  name="AppName" />
+  <update check="background"/>
+</jnlp>

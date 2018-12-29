@@ -38,7 +38,7 @@ public class GamePanel extends Pane implements Observer{
 
 		
 		public GamePanel(PHModel model, PHController controller, Scene scene) {
-			setStyle("-fx-background-color: grey");
+			setStyle("-fx-background-color: black");
 			setPrefSize(Size.x,Size.y);
 			this.model = model;
 			this.controller = controller;
