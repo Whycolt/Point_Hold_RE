@@ -53,121 +53,22 @@ public class ActionCommands {
 			}
 		}
 		p.setFire(!fireX || !fireY);
-		shootF(p, g);
-		move(p);
-		borders(p);
-	}
-	
-	private static void shootF(Entity e, GameModel g) {
-		if (e.getBulletcd() < e.getBulletCount()) {
-			if (e.getFire()) {
-				g.add(new BulletF(e.getShoot().copy(), new Pair(e.getPosition().getX()+e.getSize()/2-7,e.getPosition().getY()+e.getSize()/2-7)));
-				e.setBulletCount(0);
-			}
-		}
-		if (e.getBulletCount() < 10000) {
-			e.setBulletCount(e.getBulletCount()+1);
-		}
-		
-	}
-	
-	private static void shootE(Entity e, GameModel g) {
-		if (e.getBulletcd() < e.getBulletCount()) {
-			if (e.getFire()) {
-				g.add(new BulletE(e.getShoot().copy(), new Pair(e.getPosition().getX()+e.getSize()/2-7,e.getPosition().getY()+e.getSize()/2-7)));
-				e.setBulletCount(0);
-			}
-		}
-		if (e.getBulletCount() < 10000) {
-			e.setBulletCount(e.getBulletCount()+1);
-		}
-		
-	}
-	
-	private static void move(Entity e) {
-		double d = Math.sqrt(e.getDelta().getX()*e.getDelta().getX()+e.getDelta().getY()*e.getDelta().getY());
-		if (d != 0) {
-			e.getPosition().setX(e.getPosition().getX()+(int)(e.getSpeed()*e.getDelta().getX()/d));
-			e.getPosition().setY(e.getPosition().getY()+(int)(e.getSpeed()*e.getDelta().getY()/d));
+		ActionMethod.shootF(p, g,p.getShotDamage());
+		ActionMethod.move(p);
+		ActionMethod.borders(p);
+		if (p.getHP() < 0) {
+			g.end();
 		}
 	}
 	
-	private static void check(BulletF b, GameModel g) {
-		boolean x = true,y = true;
-		if (b.getPosition().getX() < 0) {
-			x = false;
-		}
-		if (b.getPosition().getX() > Size.x-b.getSize()){
-			x = false;
-		}
-		if (b.getPosition().getY() < 0){
-			y = false;
-		}
-		if (b.getPosition().getY() > Size.y-b.getSize()){
-			y = false;
-		}
-		if (!x || !y) {
-			g.remove(b);
-		}
-	}
-	
-	private static void check(BulletE b, GameModel g) {
-		boolean x = true,y = true;
-		if (b.getPosition().getX() < 0) {
-			x = false;
-		}
-		if (b.getPosition().getX() > Size.x-b.getSize()){
-			x = false;
-		}
-		if (b.getPosition().getY() < 0){
-			y = false;
-		}
-		if (b.getPosition().getY() > Size.y-b.getSize()){
-			y = false;
-		}
-		if (!x || !y) {
-			g.remove(b);
-		}
-	}
-	
-	private static void borders(Player e) {
-		if (e.getPosition().getX() < 0) {
-			e.getPosition().setX(0);
-		}
-		if (e.getPosition().getX() > Size.x-e.getSize()){
-			e.getPosition().setX(Size.x-e.getSize());
-		}
-		if (e.getPosition().getY() < 0){
-			e.getPosition().setY(0);
-		}
-		if (e.getPosition().getY() > Size.y-e.getSize()){
-			e.getPosition().setY(Size.y-e.getSize());
-		}
-	}
-	
-	private static void borders(Standard e) {
-		if (e.getPosition().getX() < 0) {
-			e.setDelta(new Pair(-e.getDelta().getX(),e.getDelta().getY()));
-		}
-		if (e.getPosition().getX() > Size.x-e.getSize()){
-			e.setDelta(new Pair(-e.getDelta().getX(),e.getDelta().getY()));
-		}
-		if (e.getPosition().getY() < 0){
-			e.setDelta(new Pair(e.getDelta().getX(),-e.getDelta().getY()));
-		}
-		if (e.getPosition().getY() > Size.y-e.getSize()){
-			e.setDelta(new Pair(e.getDelta().getX(),-e.getDelta().getY()));
-		}
-	}
-
 	public static void action(BulletF b, GameModel g) {
-		move(b);
-		check(b,g);
+		ActionMethod.move(b);
+		ActionMethod.check(b,g);
 	}
 	
 	public static void action(BulletE b, GameModel g) {
-		move(b);
-		check(b,g);
+		ActionMethod.move(b);
+		ActionMethod.check(b,g);
 	}
 
 	public static void action(Standard s, GameModel g) {
@@ -183,10 +84,10 @@ public class ActionCommands {
 		if (s.getPosition().getY() > g.getPlayer().getPosition().getY()) {
 			s.getShoot().setY(-Math.abs(s.getShoot().getY()));
 		}
-
-		shootE(s,g);
-		move(s);
-		borders(s);
+		ActionMethod.shootE(s,g,s.getShotDamage());
+		ActionMethod.move(s);
+		ActionMethod.borders(s);
+		ActionMethod.check(s,g);
 	}
 	
 }

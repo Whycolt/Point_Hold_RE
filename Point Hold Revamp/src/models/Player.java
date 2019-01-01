@@ -13,11 +13,14 @@ public class Player extends Entity{
 	
 	private ArrayList<String> movement;
 	
+	
 	public Player() {
 		setPosition(new Pair(0,0));
 		setDelta(new Pair(0,0));
 		setShoot(new Pair(0,0));
 		hp = 100;
+		shotDamage = 10;
+		damage = 25;
 		bulletcd = 20;
 		bulletcount = 0;
 		size = 60;

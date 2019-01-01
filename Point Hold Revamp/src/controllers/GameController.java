@@ -55,6 +55,10 @@ public class GameController implements EventHandler<ActionEvent>{
 		if (game != null)
 			game.execute();
 		f.createEnemy();
+		if (!game.isGoing()) {
+			tick.stop();
+			model.ChangeState(0);
+		}
 	}
 	
 }

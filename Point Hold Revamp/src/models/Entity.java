@@ -12,11 +12,31 @@ import javafx.scene.canvas.GraphicsContext;
 public abstract class Entity {
 	
 	protected Pair position, delta, shoot;
-	protected int speed, size, bulletcd, bulletcount, hp;
+	protected int speed, size, bulletcd, bulletcount, hp, damage, shotDamage;
 	protected boolean fire;
 	
 	public abstract void draw(GraphicsContext g);
 	public abstract void action(GameModel g);
+	
+	public int getShotDamage() {
+		return shotDamage;
+	}
+	
+	public Pair getCenter() {
+		return new Pair(position.getX()+size/2, position.getY()+size/2);
+	}
+	
+	public int getDamage() {
+		return damage;
+	}
+	
+	public int getHP() {
+		return hp;
+	}
+	
+	public void changeHP(int a) {
+		hp = hp - a;
+	}
 	
 	public int getBulletcd() {
 		return bulletcd;

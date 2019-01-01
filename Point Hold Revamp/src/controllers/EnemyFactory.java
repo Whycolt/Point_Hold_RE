@@ -34,7 +34,6 @@ public class EnemyFactory {
 			else {
 				str = new Pair((int)(Math.random()*(Size.x-60)),0);
 			}
-			System.out.println("new thing");
 			g.add(new Standard(str,dir));
 		}
 		count += 1;

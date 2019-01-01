@@ -6,14 +6,16 @@ import controllers.DrawCommands;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Standard extends Enemy{
-
+	
 	public Standard(Pair start, Pair movement) {
 		super(start, movement, 30);
+		shotDamage = 10;
 		bulletcd = 60;
 		bulletcount = 0;
 		speed = 4;
 		setFire(true);
 		shoot = new Pair(movement.getY(),movement.getX());
+		damage = 10;
 	}
 
 	@Override

@@ -9,11 +9,13 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class BulletF extends Entity{
 
-	public BulletF(Pair shoot, Pair x) {
+	public BulletF(Pair shoot, Pair x, int damage) {
 		setPosition(x);
 		setDelta(shoot);
 		setShoot(new Pair(0,0));
 		bulletcd = 0;
+		hp = 1;
+		this.damage = damage;
 		bulletcount = 0;
 		size = 15;
 		speed = 10;
